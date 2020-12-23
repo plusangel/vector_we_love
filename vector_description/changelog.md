@@ -1,5 +1,8 @@
 ## change_log of vector_description
 
+### 0.0.5 23/12/2020 vector_description
+Camera introduced
+
 ### 0.0.4 23/12/2020 vector_description
 Drop sensors and IMU introduced
 

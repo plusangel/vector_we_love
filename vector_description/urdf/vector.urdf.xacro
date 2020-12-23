@@ -4,6 +4,7 @@
     <xacro:include filename="$(find vector_description)/urdf/common/inertia.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/drop_sensor.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/imu.urdf.xacro"/>
+    <xacro:include filename="$(find vector_description)/urdf/components/camera.urdf.xacro"/>
 
     <!-- LINKS ===========================  -->
 
@@ -147,7 +148,7 @@
     </link>
 
     <!-- sensors -->
-    <link name="camera_link"/>
+    <!--    <link name="camera_link"/>-->
 
     <xacro:drop_sensor link_name="drop_front_left">
         <origin xyz="0.0351028 0.01 -0.0213898" rpy="0 1.57 0"/>
@@ -167,6 +168,9 @@
 
     <xacro:imu_sensor link_name="imu"/>
 
+    <xacro:camera link_name="camera">
+        <origin xyz="0.020813 0 -0.0071471" rpy="0 0 0"/>
+    </xacro:camera>
 
     <!-- JOINTS ====================================-->
     <joint name="dummy_joint" type="fixed">
@@ -233,11 +237,11 @@
         <origin xyz="0.00945088 -0.024 -0.0133211"/>
     </joint>
 
-    <joint name="head_camera_joint" type="fixed">
-        <parent link="head"/>
-        <child link="camera_link"/>
-        <origin xyz="0.020813 0 -0.0071471" rpy="0 0 0"/>
-    </joint>
+<!--    <joint name="head_camera_joint" type="fixed">-->
+<!--        <parent link="head"/>-->
+<!--        <child link="camera_link"/>-->
+<!--        <origin xyz="0.020813 0 -0.0071471" rpy="0 0 0"/>-->
+<!--    </joint>-->
 
     <!--    <joint name="imu_joint" type="fixed">-->
     <!--        <parent link="head"/>-->
@@ -324,43 +328,6 @@
         </plugin>
     </gazebo>
 
-    <gazebo reference="camera_link">
-        <sensor type="camera" name="cozmo_camera">
-            <update_rate>10.0</update_rate>
-            <camera name="headcamera">
-                <horizontal_fov>1.3962634</horizontal_fov>
-                <image>
-                    <width>1280</width>
-                    <height>720</height>
-                    <format>R8G8B8</format>
-                </image>
-                <clip>
-                    <near>0.01</near>
-                    <far>100</far>
-                </clip>
-                <noise>
-                    <type>gaussian</type>
-
-                    <mean>0.0</mean>
-                    <stddev>0.007</stddev>
-                </noise>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>25.0</updateRate>
-                <cameraName>camera</cameraName>
-                <imageTopicName>image</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_link</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin>
-        </sensor>
-    </gazebo>
 
     <!-- components -->
     <xacro:include filename="$(find vector_description)/urdf/vector.gazebo"/>
