@@ -1,4 +1,5 @@
-#vector_we_love
+# vector_we_love
+Everyone knows and loves vector by Digital Dream Labs. What if we play we that using our beloved ROS. This is my effort, using existing work by other great developers, to expole vector and ros in a joyful way!
 
 ### references
 
