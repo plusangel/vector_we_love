@@ -1,5 +1,8 @@
 ## change_log of vector_description
 
+### 0.0.3 23/12/2020 vector_description
+Inertia module introduced
+
 ### 0.0.2 23/12/2020 vector_description
 Readme updated
 
