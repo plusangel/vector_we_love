@@ -1,5 +1,8 @@
 ## change_log of vector_viz
 
+### 0.0.3 23/12/2020 vector_viz
+Fix package.xml bug
+
 ### 0.0.2 23/12/2020 vector_viz
 Refactoring of the changelog
 
