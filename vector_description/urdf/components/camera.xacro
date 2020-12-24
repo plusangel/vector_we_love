@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="camera_gazebo">
+    <macro name="camera_gazebo">
         <gazebo reference="camera_link">
             <sensor type="camera" name="vector_camera">
                 <update_rate>10.0</update_rate>
@@ -38,6 +38,6 @@
                 </plugin>
             </sensor>
         </gazebo>
-    </xacro:macro>
+    </macro>
 
 </robot>

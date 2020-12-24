@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="drop_sensor" params="link_name *origin">
+    <macro name="drop_sensor" params="link_name *origin">
         <link name="${link_name}"/>
         <joint name="${link_name}_joint" type="fixed">
             <parent link="base_link"/>
             <child link="${link_name}"/>
             <xacro:insert_block name="origin"/>
         </joint>
-    </xacro:macro>
+    </macro>
 
 </robot>

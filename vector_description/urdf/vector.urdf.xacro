@@ -5,14 +5,13 @@
     <xacro:include filename="$(find vector_description)/urdf/components/drop_sensor.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/imu.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/camera.urdf.xacro"/>
+    <xacro:include filename="$(find vector_description)/urdf/components/wheel.urdf.xacro"/>
 
     <!-- LINKS ===========================  -->
 
     <!--chassis-->
 
     <link name="dummy"/>
-
-    <!--    <link name="imu"/>-->
 
     <link name="base_link">
         <xacro:box_inertia m="0.06" x="0.073" y="0.043" z="0.061"/>
@@ -28,69 +27,21 @@
         </collision>
     </link>
 
-    <!--Front left wheel-->
-    <link name="front_left_wheel">
-        <xacro:cylinder_inertia m="0.01" r="0.01314" l="0.0116739"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/flw2.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0"
-                    rpy="1.57 0 0"/>
-            <geometry>
-                <cylinder radius="${0.026281/2.0}" length="0.0116739"/>
-            </geometry>
-        </collision>
-    </link>
+    <xacro:wheel link_name="front_left_wheel" radius="0.01314" filename="package://vector_description/meshes/flw2.dae">
+        <origin xyz="0.03 0.024 -0.012"/>
+    </xacro:wheel>
 
-    <!--Front right wheel  -->
-    <link name="front_right_wheel">
-        <xacro:cylinder_inertia m="0.01" r="0.01314" l="0.0116739"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/flw2.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0"
-                    rpy="1.57 0 0"/>
-            <geometry>
-                <cylinder radius="${0.026281/2.0}" length="0.0116739"/>
-            </geometry>
-        </collision>
-    </link>
+    <xacro:wheel link_name="front_right_wheel" radius="0.01314" filename="package://vector_description/meshes/flw2.dae">
+        <origin xyz="0.03 -0.024 -0.012" rpy="0 0 ${-pi}"/>
+    </xacro:wheel>
 
-    <!--Rear left wheel -->
-    <link name="rear_left_wheel">
-        <xacro:cylinder_inertia m="0.01" r="0.008995" l="0.0116739"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/rlw2.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/rlw2.dae"/>
-            </geometry>
-        </collision>
-    </link>
+    <xacro:wheel link_name="rear_left_wheel" radius="0.008995" filename="package://vector_description/meshes/rlw2.dae">
+        <origin xyz="-0.017 0.024 -0.0151707"/>
+    </xacro:wheel>
 
-    <!--Rear right wheel -->
-    <link name="rear_right_wheel">
-        <xacro:cylinder_inertia m="0.01" r="0.008995" l="0.0116739"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/rlw2.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/rlw2.dae"/>
-            </geometry>
-        </collision>
-    </link>
+    <xacro:wheel link_name="rear_right_wheel" radius="0.008995" filename="package://vector_description/meshes/rlw2.dae">
+        <origin xyz="-0.017 -0.024 -0.0151707" rpy="0 0 ${-pi}"/>
+    </xacro:wheel>
 
     <!-- Head -->
     <link name="head">
@@ -148,7 +99,6 @@
     </link>
 
     <!-- sensors -->
-    <!--    <link name="camera_link"/>-->
 
     <xacro:drop_sensor link_name="drop_front_left">
         <origin xyz="0.0351028 0.01 -0.0213898" rpy="0 1.57 0"/>
@@ -176,34 +126,6 @@
     <joint name="dummy_joint" type="fixed">
         <parent link="dummy"/>
         <child link="base_link"/>
-    </joint>
-
-    <joint name="base_to_flw" type="continuous">
-        <parent link="base_link"/>
-        <child link="front_left_wheel"/>
-        <origin xyz="0.03 0.024 -0.012"/>
-        <axis xyz="0 1 0"/>
-    </joint>
-
-    <joint name="base_to_frw" type="continuous">
-        <parent link="base_link"/>
-        <child link="front_right_wheel"/>
-        <origin xyz="0.03 -0.024 -0.012"/>
-        <axis xyz="0 1 0"/>
-    </joint>
-
-    <joint name="base_to_rlw" type="continuous">
-        <parent link="base_link"/>
-        <child link="rear_left_wheel"/>
-        <origin xyz="-0.017 0.024 -0.0151707"/>
-        <axis xyz="0 1 0"/>
-    </joint>
-
-    <joint name="base_to_rrw" type="continuous">
-        <parent link="base_link"/>
-        <child link="rear_right_wheel"/>
-        <origin xyz="-0.017 -0.024 -0.0151707"/>
-        <axis xyz="0 1 0"/>
     </joint>
 
     <joint name="base_to_head" type="revolute">
@@ -236,18 +158,6 @@
         <child link="right_belt"/>
         <origin xyz="0.00945088 -0.024 -0.0133211"/>
     </joint>
-
-<!--    <joint name="head_camera_joint" type="fixed">-->
-<!--        <parent link="head"/>-->
-<!--        <child link="camera_link"/>-->
-<!--        <origin xyz="0.020813 0 -0.0071471" rpy="0 0 0"/>-->
-<!--    </joint>-->
-
-    <!--    <joint name="imu_joint" type="fixed">-->
-    <!--        <parent link="head"/>-->
-    <!--        <child link="imu"/>-->
-    <!--        <origin xyz="0.0 0 0.0" rpy="0 0 0"/>-->
-    <!--    </joint>-->
 
     <gazebo reference="rear_right_wheel">
         <mu1>0.5</mu1>
@@ -299,35 +209,6 @@
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
-
-    <!-- ROS Control plugin for Gazebo -->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/vector</robotNamespace>
-            <legacyModeNS>true</legacyModeNS>
-        </plugin>
-    </gazebo>
-
-    <gazebo>
-        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-            <updateRate>25.0</updateRate>
-            <robotNamespace>/</robotNamespace>
-            <leftFrontJoint>base_to_flw</leftFrontJoint>
-            <rightFrontJoint>base_to_frw</rightFrontJoint>
-            <leftRearJoint>base_to_rlw</leftRearJoint>
-            <rightRearJoint>base_to_rrw</rightRearJoint>
-            <wheelSeparation>0.048</wheelSeparation>
-            <wheelDiameter>0.026281</wheelDiameter>
-            <robotBaseFrame>base_link</robotBaseFrame>
-            <torque>20</torque>
-            <topicName>cmd_vel</topicName>
-            <commandTopic>cmd_vel</commandTopic>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <broadcastTF>1</broadcastTF>
-        </plugin>
-    </gazebo>
-
 
     <!-- components -->
     <xacro:include filename="$(find vector_description)/urdf/vector.gazebo"/>

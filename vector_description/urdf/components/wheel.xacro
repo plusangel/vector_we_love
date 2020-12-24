@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <macro name="skid_steer_drive_gazebo">
+        <gazebo>
+            <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+                <updateRate>25.0</updateRate>
+                <robotNamespace>/</robotNamespace>
+                <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+                <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+                <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
+                <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
+                <wheelSeparation>0.048</wheelSeparation>
+                <wheelDiameter>0.026281</wheelDiameter>
+                <robotBaseFrame>base_link</robotBaseFrame>
+                <torque>20</torque>
+                <topicName>cmd_vel</topicName>
+                <commandTopic>cmd_vel</commandTopic>
+                <odometryTopic>odom</odometryTopic>
+                <odometryFrame>odom</odometryFrame>
+                <broadcastTF>1</broadcastTF>
+            </plugin>
+        </gazebo>
+    </macro>
+
+</robot>

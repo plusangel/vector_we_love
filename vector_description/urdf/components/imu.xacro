@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="imu_sensor_gazebo">
+    <macro name="imu_sensor_gazebo">
         <gazebo reference="imu">
             <gravity>true</gravity>
             <sensor name="imu_sensor" type="imu">
@@ -21,6 +21,6 @@
                 <pose>0 0 0 0 0 0</pose>
             </sensor>
         </gazebo>
-    </xacro:macro>
+    </macro>
 
 </robot>
