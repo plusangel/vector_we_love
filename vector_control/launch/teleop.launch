@@ -1,0 +1,9 @@
+<launch>
+   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop">
+    <param name="speed" value="0.1"/>
+    <param name="turn" value="0.5"/>
+    <remap from="cmd_vel" to="vector/cmd_vel"/>
+  </node>
+
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server"/>
+</launch>

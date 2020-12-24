@@ -1,0 +1,9 @@
+<launch>
+
+    <rosparam command="load" file="$(find vector_control)/config/control.yaml"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+          respawn="false"
+          output="screen" ns="vector" args="joint_state_controller head_angle lift_height"/>
+
+</launch>
