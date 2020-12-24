@@ -1,5 +1,11 @@
 ## change_log of vector_description
 
+### 0.0.7 24/12/2020 vector_description
+Belts introduced
+
+### 0.0.6 24/12/2020 vector_description
+Wheels introduced
+
 ### 0.0.5 23/12/2020 vector_description
 Camera introduced
 

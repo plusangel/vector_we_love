@@ -6,6 +6,7 @@
     <xacro:include filename="$(find vector_description)/urdf/components/imu.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/camera.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/wheel.urdf.xacro"/>
+    <xacro:include filename="$(find vector_description)/urdf/components/belt.urdf.xacro"/>
 
     <!-- LINKS ===========================  -->
 
@@ -43,6 +44,14 @@
         <origin xyz="-0.017 -0.024 -0.0151707" rpy="0 0 ${-pi}"/>
     </xacro:wheel>
 
+    <xacro:belt link_name="left_belt" filename="package://vector_description/meshes/cozmo_belt.dae">
+        <origin xyz="0.00945088 0.024 -0.0133211"/>
+    </xacro:belt>
+
+    <xacro:belt link_name="right_belt" filename="package://vector_description/meshes/cozmo_belt.dae">
+        <origin xyz="0.00945088 -0.024 -0.0133211"/>
+    </xacro:belt>
+
     <!-- Head -->
     <link name="head">
         <xacro:box_inertia m="0.01" x="0.036" y="0.038" z="0.041"/>
@@ -71,31 +80,6 @@
                 <mesh filename="package://vector_description/meshes/vector_lift.dae"/>
             </geometry>
         </collision>
-    </link>
-
-    <!-- Belts -->
-    <link name="left_belt">
-        <inertial>
-            <mass value="0.0001"/>
-            <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0000001"/>
-        </inertial>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/cozmo_belt.dae"/>
-            </geometry>
-        </visual>
-    </link>
-
-    <link name="right_belt">
-        <inertial>
-            <mass value="0.0001"/>
-            <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0000001"/>
-        </inertial>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/cozmo_belt.dae"/>
-            </geometry>
-        </visual>
     </link>
 
     <!-- sensors -->
@@ -145,18 +129,6 @@
         <limit lower="-0.8" upper="0" effort="5" velocity="10"/>
         <dynamics damping="0.0" friction="0.1"/>
         <axis xyz="0 1 0"/>
-    </joint>
-
-    <joint name="wheel_left_belt" type="fixed">
-        <parent link="base_link"/>
-        <child link="left_belt"/>
-        <origin xyz="0.00945088 0.024 -0.0133211"/>
-    </joint>
-
-    <joint name="wheel_right_belt" type="fixed">
-        <parent link="base_link"/>
-        <child link="right_belt"/>
-        <origin xyz="0.00945088 -0.024 -0.0133211"/>
     </joint>
 
     <gazebo reference="rear_right_wheel">
