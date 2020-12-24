@@ -1,5 +1,8 @@
 ## change_log of vector_description
 
+### 0.0.8 24/12/2020 vector_description
+Meshes added
+
 ### 0.0.7 24/12/2020 vector_description
 Belts introduced
 

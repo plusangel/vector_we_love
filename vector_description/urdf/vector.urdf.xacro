@@ -8,11 +8,12 @@
     <xacro:include filename="$(find vector_description)/urdf/components/wheel.urdf.xacro"/>
     <xacro:include filename="$(find vector_description)/urdf/components/belt.urdf.xacro"/>
 
-    <!-- LINKS ===========================  -->
-
-    <!--chassis-->
 
     <link name="dummy"/>
+    <joint name="dummy_joint" type="fixed">
+        <parent link="dummy"/>
+        <child link="base_link"/>
+    </joint>
 
     <link name="base_link">
         <xacro:box_inertia m="0.06" x="0.073" y="0.043" z="0.061"/>
@@ -24,6 +25,53 @@
         <collision>
             <geometry>
                 <mesh filename="package://vector_description/meshes/vector_body.dae"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_head" type="revolute">
+        <parent link="base_link"/>
+        <child link="head"/>
+        <origin xyz="0.0174507 0 0.022003"/>
+        <limit lower="-0.52" upper="0.17" effort="100" velocity="10"/>
+        <!-- Dampning break the model, keep it 0.0 -->
+        <dynamics damping="0.0" friction="0.1"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Head -->
+    <link name="head">
+        <xacro:box_inertia m="0.01" x="0.036" y="0.038" z="0.041"/>
+        <visual>
+            <geometry>
+                <mesh filename="package://vector_description/meshes/vector_head.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://vector_description/meshes/vector_head.dae"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_lift" type="revolute">
+        <parent link="base_link"/>
+        <child link="full_lift"/>
+        <origin xyz="-0.005 0 0.013"/>
+        <limit lower="-0.8" upper="0" effort="5" velocity="10"/>
+        <dynamics damping="0.0" friction="0.1"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- lifter -->
+    <link name="full_lift">
+        <xacro:box_inertia m="0.01" x="0.081" y="0.058" z="0.050"/>
+        <visual>
+            <geometry>
+                <mesh filename="package://vector_description/meshes/vector_lift.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://vector_description/meshes/vector_lift.dae"/>
             </geometry>
         </collision>
     </link>
@@ -52,35 +100,6 @@
         <origin xyz="0.00945088 -0.024 -0.0133211"/>
     </xacro:belt>
 
-    <!-- Head -->
-    <link name="head">
-        <xacro:box_inertia m="0.01" x="0.036" y="0.038" z="0.041"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/vector_head.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/vector_head.dae"/>
-            </geometry>
-        </collision>
-    </link>
-
-    <!-- lifter -->
-    <link name="full_lift">
-        <xacro:box_inertia m="0.01" x="0.081" y="0.058" z="0.050"/>
-        <visual>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/vector_lift.dae"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://vector_description/meshes/vector_lift.dae"/>
-            </geometry>
-        </collision>
-    </link>
 
     <!-- sensors -->
 
@@ -106,30 +125,6 @@
         <origin xyz="0.020813 0 -0.0071471" rpy="0 0 0"/>
     </xacro:camera>
 
-    <!-- JOINTS ====================================-->
-    <joint name="dummy_joint" type="fixed">
-        <parent link="dummy"/>
-        <child link="base_link"/>
-    </joint>
-
-    <joint name="base_to_head" type="revolute">
-        <parent link="base_link"/>
-        <child link="head"/>
-        <origin xyz="0.0174507 0 0.022003"/>
-        <limit lower="-0.52" upper="0.17" effort="100" velocity="10"/>
-        <!-- Dampning break the model, keep it 0.0 -->
-        <dynamics damping="0.0" friction="0.1"/>
-        <axis xyz="0 1 0"/>
-    </joint>
-
-    <joint name="base_to_lift" type="revolute">
-        <parent link="base_link"/>
-        <child link="full_lift"/>
-        <origin xyz="-0.005 0 0.013"/>
-        <limit lower="-0.8" upper="0" effort="5" velocity="10"/>
-        <dynamics damping="0.0" friction="0.1"/>
-        <axis xyz="0 1 0"/>
-    </joint>
 
     <gazebo reference="rear_right_wheel">
         <mu1>0.5</mu1>
@@ -184,6 +179,5 @@
 
     <!-- components -->
     <xacro:include filename="$(find vector_description)/urdf/vector.gazebo"/>
-
 
 </robot>

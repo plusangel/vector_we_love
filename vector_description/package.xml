@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>vector_description</name>
-  <version>0.0.7</version>
-  <description>The vector_description package</description>
+    <name>vector_description</name>
+    <version>0.0.8</version>
+    <description>The vector_description package</description>
 
-  <maintainer email="angelos@codingAdventures.org">angelos</maintainer>
+    <maintainer email="angelos@codingAdventures.org">angelos plastropoulos</maintainer>
+    <author>angelos plastropoulos</author>
 
-  <license>MIT</license>
+    <license>MIT</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>rospy</build_depend>
-  <build_depend>gazebo_ros</build_depend>
+    <url type="website">http://codingAdventures.org</url>
 
-  <build_export_depend>rospy</build_export_depend>
-  <build_export_depend>gazebo_ros</build_export_depend>
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>gazebo_ros</build_depend>
 
-  <exec_depend>rospy</exec_depend>
-  <exec_depend>gazebo_ros</exec_depend>
+    <build_export_depend>rospy</build_export_depend>
+    <build_export_depend>gazebo_ros</build_export_depend>
+
+    <exec_depend>rospy</exec_depend>
+    <exec_depend>gazebo_ros</exec_depend>
 
 </package>
