@@ -1,5 +1,8 @@
 ## change_log of vector_description
 
+### 0.0.9 16/01/2021 vector_description
+xacro/macro housekeeping and mass added to inertia tags for fixing simulation
+
 ### 0.0.8 24/12/2020 vector_description
 Meshes added
 

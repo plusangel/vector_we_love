@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:include filename="$(find vector_description)/urdf/components/camera.xacro"/>
-    <xacro:include filename="$(find vector_description)/urdf/components/imu.xacro"/>
-    <xacro:include filename="$(find vector_description)/urdf/components/drop_sensor.xacro"/>
-    <xacro:include filename="$(find vector_description)/urdf/components/wheel.xacro"/>
+    <include filename="$(find vector_description)/urdf/components/camera.xacro"/>
+    <include filename="$(find vector_description)/urdf/components/imu.xacro"/>
+    <include filename="$(find vector_description)/urdf/components/drop_sensor.xacro"/>
+    <include filename="$(find vector_description)/urdf/components/skid_drive.xacro"/>
 
-    <xacro:drop_sensor_gazebo link_name="drop_front_left"/>
-    <xacro:drop_sensor_gazebo link_name="drop_front_right"/>
-    <xacro:drop_sensor_gazebo link_name="drop_rear_left"/>
-    <xacro:drop_sensor_gazebo link_name="drop_rear_right"/>
+    <drop_sensor_gazebo link_name="drop_front_left"/>
+    <drop_sensor_gazebo link_name="drop_front_right"/>
+    <drop_sensor_gazebo link_name="drop_rear_left"/>
+    <drop_sensor_gazebo link_name="drop_rear_right"/>
 
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

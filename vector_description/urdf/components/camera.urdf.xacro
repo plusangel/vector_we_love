@@ -6,7 +6,7 @@
         <joint name="${link_name}_joint" type="fixed">
             <parent link="head"/>
             <child link="${link_name}"/>
-            <xacro:insert_block name="origin"/>
+            <insert_block name="origin"/>
         </joint>
     </macro>
 

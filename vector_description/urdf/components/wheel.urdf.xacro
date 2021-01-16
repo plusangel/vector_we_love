@@ -22,13 +22,13 @@
                     <cylinder radius="${radius}" length="0.0116739"/>
                 </geometry>
                 <mass value="0.01"/>
-                <xacro:cylinder_inertia m="0.01" r="${radius}" l="0.01167"/>
+                <cylinder_inertia m="0.01" r="${radius}" l="0.01167"/>
             </inertial>
         </link>
         <joint name="${link_name}_joint" type="continuous">
             <parent link="base_link"/>
             <child link="${link_name}"/>
-            <xacro:insert_block name="origin"/>
+            <insert_block name="origin"/>
             <axis xyz="0 1 0"/>
         </joint>
     </macro>
