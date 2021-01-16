@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>vector_gazebo</name>
+    <version>0.0.1</version>
+    <description>The vector_gazebo package</description>
+
+    <maintainer email="angelos@codingAdventures.org">angelos plastropoulos</maintainer>
+    <author>angelos plastropoulos</author>
+
+    <license>MIT</license>
+
+    <url type="website">http://codingAdventures.org</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>gazebo_ros</build_depend>
+    <build_depend>gazebo_ros_control</build_depend>
+    <build_export_depend>gazebo_ros</build_export_depend>
+    <build_export_depend>gazebo_ros_control</build_export_depend>
+    <exec_depend>gazebo_ros</exec_depend>
+    <exec_depend>gazebo_ros_control</exec_depend>
+
+</package>
